@@ -183,8 +183,6 @@ After collecting feedback from 5 real testnet users via the Google Form, the mos
 - `src/utils/claudeClient.js` — added mock mode for AI chat and reports
 - `src/hooks/useWallet.js` — updated `requestAccess()` compatibility
 
-**Git commit:** [https://github.com/YOUR_USERNAME/stellarmind/commit/060c8e1](https://github.com/YOUR_USERNAME/stellarmind/commit/060c8e1)
-
 ---
 
 ## 📦 Deployment (Vercel)
