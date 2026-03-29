@@ -154,7 +154,7 @@ The form collects:
 
 ### Feedback Summary
 
-📊 **[Download user-feedback.xlsx](./user-feedback.xlsx)**
+📊 **[Download user-feedback.xlsx](https://docs.google.com/spreadsheets/d/1z5qWUXBFzpwYbUwEyMDP-iqGPzAiG9YBT4lGVtV_-JY/edit?usp=sharing)**
 
 | Tester | Rating | Favourite Feature | Main Feedback |
 |--------|--------|------------------|---------------|
