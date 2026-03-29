@@ -143,7 +143,7 @@ All wallets listed below are real Stellar testnet addresses, verifiable on [Stel
 ## 📋 User Feedback & Validation
 
 ### Google Form
-**[Fill out the User Feedback Form →](https://forms.gle/YOUR_FORM_LINK)**
+**[Fill out the User Feedback Form →](https://docs.google.com/forms/d/e/1FAIpQLSeS1jUUFzmdggtiaGvQ5QhGV3BScflLSxKVD1Eu-zmAZX0_7Q/viewform?usp=header)**
 
 The form collects:
 - Full Name
@@ -152,7 +152,6 @@ The form collects:
 - Overall Rating (1–5 stars)
 - Favourite Feature
 - What would you improve?
-- Would you use this on Stellar mainnet?
 
 ### Feedback Summary
 
