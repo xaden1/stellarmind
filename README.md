@@ -50,6 +50,7 @@ StellarMind is a **100% frontend dApp** — no backend server, no database. It c
 | 🌐 Network Comparison | Compares your behaviour to average Stellar users |
 | 🎯 Goal Tracker | Set and track monthly XLM goals, persisted in localStorage |
 | 📁 Monthly Reports | AI-written reports, printable / saveable as PDF |
+| ⚡ Offline Mock Mode | **Fully functional AI demo without spending API credits** |
 
 ---
 
@@ -79,6 +80,7 @@ See **[ARCHITECTURE.md](./ARCHITECTURE.md)** for the full data flow, component t
 | Blockchain | Stellar Horizon Testnet API + @stellar/freighter-api |
 | AI | Anthropic Claude API (`claude-sonnet-4-20250514`) |
 | Storage | localStorage (goals + cached analysis) |
+| Offline Mode | Built-in smart Mock Mode (chat/reports work without API keys!) |
 | Deployment | Vercel (static, zero config) |
 
 ---
@@ -109,14 +111,15 @@ VITE_ANTHROPIC_API_KEY=your_claude_api_key_here
 VITE_HORIZON_URL=https://horizon-testnet.stellar.org
 ```
 
-> ⚠️ Never commit `.env`. It is listed in `.gitignore`.  
-> Without an API key the app uses client-side fallback analysis automatically.
+> 💡 **No API Key? No Problem!**  
+> If you leave the API key empty, StellarMind instantly switches to **Mock Mode**. The dashboard, AI Chat, and PDF Monthly Report features will still work beautifully using simulated data injected with your actual Stellar transaction counts—perfect for hackathon demo videos with zero API cost.
 
 ### Get a Testnet Wallet (5 min setup)
 
 1. Install [Freighter extension](https://freighter.app)
 2. Create wallet → Settings → **Switch to Testnet**
 3. Fund at [Stellar Laboratory Friendbot](https://laboratory.stellar.org/#account-creator?network=test)
+   *(Note: Unfunded wallets will display a "Wallet not found" error because they do not exist on the ledger yet).*
 4. Visit your StellarMind deployment → click **Connect Wallet**
 
 ---
@@ -176,13 +179,13 @@ After collecting feedback from 5 real testnet users via the Google Form, the mos
 
 **Issue identified:** [Describe the specific issue users flagged most]
 
-**Change made:** [Describe what was fixed or improved — e.g. "Improved the Claude prompt in `chatWithWallet()` to include date-specific context from the last 30 operations"]
+**Change made:** [Describe what was fixed or improved — e.g. "Added Offline Mock Mode for judges and users without API keys, and improved Freighter connection logic to use latest API methods"]
 
 **Files changed:**
-- `src/utils/claudeClient.js` — updated system prompt
-- `src/hooks/useAI.js` — added date context to chat history
+- `src/utils/claudeClient.js` — added mock mode for AI chat and reports
+- `src/hooks/useWallet.js` — updated `requestAccess()` compatibility
 
-**Git commit:** [https://github.com/YOUR_USERNAME/stellarmind/commit/9ac2fed3fd45ee43b204ee109513080e18a9ef7f](https://github.com/YOUR_USERNAME/stellarmind/commit/9ac2fed3fd45ee43b204ee109513080e18a9ef7f)
+**Git commit:** [https://github.com/YOUR_USERNAME/stellarmind/commit/060c8e1](https://github.com/YOUR_USERNAME/stellarmind/commit/060c8e1)
 
 ---
 
