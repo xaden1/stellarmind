@@ -10,9 +10,8 @@
 ---
 
 ## 🚀 Live Demo
-**[https://YOUR-VERCEL-URL.vercel.app](https://YOUR-VERCEL-URL.vercel.app)**
+**[https://YOUR-VERCEL-URL.vercel.app](https://stellarmind-azure.vercel.app/)**
 
-> Replace with your actual Vercel deployment URL after deploying.
 
 ---
 
