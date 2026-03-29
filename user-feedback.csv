@@ -1,0 +1,6 @@
+Name,Email,Wallet Address,Stellar Expert Link,Rating (1-5),Favourite Feature,What would you improve?,Would you use on mainnet?,Date Submitted
+[Tester 1 Name],[email@example.com],GABC...XYZ1,https://stellar.expert/explorer/testnet/account/GABC...XYZ1,5,AI Chat,"Nothing, loved it!",Yes,[Date]
+[Tester 2 Name],[email@example.com],GDEF...XYZ2,https://stellar.expert/explorer/testnet/account/GDEF...XYZ2,4,Health Score,More chart types,Yes,[Date]
+[Tester 3 Name],[email@example.com],GHIJ...XYZ3,https://stellar.expert/explorer/testnet/account/GHIJ...XYZ3,5,Heatmap Calendar,Mainnet support,Yes,[Date]
+[Tester 4 Name],[email@example.com],GKLM...XYZ4,https://stellar.expert/explorer/testnet/account/GKLM...XYZ4,4,Personality Card,More archetypes,Maybe,[Date]
+[Tester 5 Name],[email@example.com],GNOP...XYZ5,https://stellar.expert/explorer/testnet/account/GNOP...XYZ5,5,Monthly Report,Add email export,Yes,[Date]
