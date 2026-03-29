@@ -10,7 +10,7 @@
 ---
 
 ## 🚀 Live Demo
-**[[https://stellarmind-azure.vercel.app](https://stellarmind-azure.vercel.app/)**
+**[https://stellarmind-azure.vercel.app](https://stellarmind-azure.vercel.app/)**
 
 
 ---
