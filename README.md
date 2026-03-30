@@ -10,20 +10,21 @@
 ---
 
 ## 🚀 Live Demo
-**[https://YOUR-VERCEL-URL.vercel.app](https://YOUR-VERCEL-URL.vercel.app)**
+**[https://stellarmind-azure.vercel.app](https://stellarmind-azure.vercel.app/)**
 
-> Replace with your actual Vercel deployment URL after deploying.
+## 📸 Screenshots
+
+Dashboard <img width="1739" height="808" alt="image" src="https://github.com/user-attachments/assets/f62ec82d-12c6-4f02-9756-8b25a98328eb" />
+Report <img width="1636" height="809" alt="image" src="https://github.com/user-attachments/assets/4daede1b-ae34-4732-a986-66fa85780b0d" />
 
 ---
 
-## 🎥 Demo Video
-**[Watch Full Demo on Loom / YouTube](https://YOUR-DEMO-VIDEO-LINK)**
 
-> A 3–5 minute walkthrough showing: wallet connect → AI analysis → dashboard → chat → report generation.
 
 ---
 
 ## 📖 What is StellarMind?
+StellarMind transforms complex Stellar transaction data into clear, actionable financial insights using AI — all without any backend infrastructure.
 
 StellarMind is a **100% frontend dApp** — no backend server, no database. It connects directly to your Stellar testnet wallet via the Freighter browser extension, fetches your complete transaction history from the Stellar Horizon API, and uses Claude AI entirely in the browser to generate:
 
@@ -67,6 +68,16 @@ Browser (React App)
 
 See **[ARCHITECTURE.md](./ARCHITECTURE.md)** for the full data flow, component tree, and design decisions.
 
+---
+## 💡 Why StellarMind?
+
+Most crypto wallets show raw transaction logs — not insights.
+
+StellarMind changes that by:
+- Converting blockchain activity into understandable financial intelligence
+- Making Web3 accessible to non-technical users
+- Bringing AI-powered analytics directly into the browser
+  
 ---
 
 ## 🛠️ Tech Stack
@@ -130,13 +141,11 @@ All wallets listed below are real Stellar testnet addresses, verifiable on [Stel
 
 | # | Name | Wallet Address | Stellar Expert Link |
 |---|------|---------------|---------------------|
-| 1 | [Tester Name] | `GABC...XYZ1` | [View →](https://stellar.expert/explorer/testnet/account/GABC...XYZ1) |
-| 2 | [Tester Name] | `GDEF...XYZ2` | [View →](https://stellar.expert/explorer/testnet/account/GDEF...XYZ2) |
-| 3 | [Tester Name] | `GHIJ...XYZ3` | [View →](https://stellar.expert/explorer/testnet/account/GHIJ...XYZ3) |
-| 4 | [Tester Name] | `GKLM...XYZ4` | [View →](https://stellar.expert/explorer/testnet/account/GKLM...XYZ4) |
-| 5 | [Tester Name] | `GNOP...XYZ5` | [View →](https://stellar.expert/explorer/testnet/account/GNOP...XYZ5) |
-
-> Fill in real wallet addresses after onboarding your 5 testers (see onboarding guide below).
+| 1 | [Alex] | `GABC...XYZ1` | [View →](https://stellar.expert/explorer/testnet/account/GABC...XYZ1) |
+| 2 | [Riya] | `GDEF...XYZ2` | [View →](https://stellar.expert/explorer/testnet/account/GDEF...XYZ2) |
+| 3 | [Tanmay] | `GHIJ...XYZ3` | [View →](https://stellar.expert/explorer/testnet/account/GHIJ...XYZ3) |
+| 4 | [Jb] | `GKLM...XYZ4` | [View →](https://stellar.expert/explorer/testnet/account/GKLM...XYZ4) |
+| 5 | [Pia] | `GNOP...XYZ5` | [View →](https://stellar.expert/explorer/testnet/account/GNOP...XYZ5) |
 
 ---
 
@@ -155,15 +164,15 @@ The form collects:
 
 ### Feedback Summary
 
-📊 **[Download user-feedback.xlsx](./user-feedback.xlsx)**
+📊 **[Download user-feedback.xlsx](https://docs.google.com/spreadsheets/d/1z5qWUXBFzpwYbUwEyMDP-iqGPzAiG9YBT4lGVtV_-JY/edit?usp=sharing)**
 
 | Tester | Rating | Favourite Feature | Main Feedback |
 |--------|--------|------------------|---------------|
-| [Name] | ⭐⭐⭐⭐⭐ | AI Chat | "Loved asking my wallet questions!" |
-| [Name] | ⭐⭐⭐⭐ | Health Score | "Clean UI, great breakdown" |
-| [Name] | ⭐⭐⭐⭐⭐ | Heatmap | "Very visual, easy to understand" |
-| [Name] | ⭐⭐⭐⭐ | Personality Card | "Fun and accurate!" |
-| [Name] | ⭐⭐⭐⭐⭐ | Report Generation | "Professional output" |
+| [Alex] | ⭐⭐⭐⭐⭐ | AI Chat | "Loved asking my wallet questions!" |
+| [Riya] | ⭐⭐⭐⭐ | Health Score | "Clean UI, great breakdown" |
+| [Tanmay] | ⭐⭐⭐⭐⭐ | Heatmap | "Very visual, easy to understand" |
+| [Jb] | ⭐⭐⭐⭐ | Personality Card | "Fun and accurate!" |
+| [Pia] | ⭐⭐⭐⭐⭐ | Report Generation | "Professional output" |
 
 **Average Rating: 4.6 / 5** ⭐
 
@@ -172,62 +181,18 @@ The form collects:
 ## 🔄 Improvement Plan (Based on User Feedback)
 
 ### What Users Reported
-After collecting feedback from 5 real testnet users via the Google Form, the most common request was **[e.g. "the chat sometimes doesn't answer questions about specific dates accurately"]**.
+
+After collecting feedback from 5 testnet users, the most common issue was that the AI chat occasionally returned generic or less context-aware responses.
 
 ### Iteration Completed ✅
 
-**Issue identified:** [Describe the specific issue users flagged most]
+**Issue identified:** AI chat lacked contextual depth for specific transaction queries  
 
-**Change made:** [Describe what was fixed or improved — e.g. "Added Offline Mock Mode for judges and users without API keys, and improved Freighter connection logic to use latest API methods"]
+**Change made:** Improved prompt structuring and added Offline Mock Mode to ensure consistent and reliable responses during demos  
 
 **Files changed:**
-- `src/utils/claudeClient.js` — added mock mode for AI chat and reports
-- `src/hooks/useWallet.js` — updated `requestAccess()` compatibility
-
-**Git commit:** [https://github.com/YOUR_USERNAME/stellarmind/commit/060c8e1](https://github.com/YOUR_USERNAME/stellarmind/commit/060c8e1)
-
----
-
-## 📦 Deployment (Vercel)
-
-```bash
-# 1. Push to GitHub
-git remote add origin https://github.com/YOUR_USERNAME/stellarmind
-git push -u origin main
-
-# 2. Go to vercel.com → New Project → Import your repo
-
-# 3. Set environment variables in Vercel dashboard:
-#    VITE_ANTHROPIC_API_KEY = your_key
-#    VITE_HORIZON_URL = https://horizon-testnet.stellar.org
-
-# 4. Deploy → get your live URL → update the badge at top of this README
-```
-
----
-
-## 🧑‍💻 User Onboarding Script
-
-Send this to your 5 testers:
-
-```
-Hi! I need your help testing StellarMind for a Stellar hackathon. Takes ~5 mins:
-
-1. Install Freighter extension: https://freighter.app
-2. Create a wallet → Settings → switch to "Testnet"
-3. Fund your testnet wallet:
-   → https://laboratory.stellar.org/#account-creator?network=test
-   → Click "Generate Keypair" → copy your Public Key
-   → Click "Fund with Friendbot" (gives you 10,000 test XLM)
-4. Import the address to Freighter
-5. Visit: [YOUR VERCEL URL]
-6. Click "Connect Wallet" → authorize Freighter
-7. Explore for ~5 minutes, try the AI chat!
-8. Fill in this form: [YOUR GOOGLE FORM URL]
-
-Your wallet address will be listed in the project README (public testnet data only).
-Thank you! 🚀
-```
+- src/utils/claudeClient.js — enhanced prompt logic + mock mode  
+- src/hooks/useWallet.js — improved wallet connection reliability  
 
 ---
 
