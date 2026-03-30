@@ -181,12 +181,18 @@ The form collects:
 ## 🔄 Improvement Plan (Based on User Feedback)
 
 ### What Users Reported
-After collecting feedback from 5 real testnet users via the Google Form, the most common request was **[e.g. "the chat sometimes doesn't answer questions about specific dates accurately"]**.
+
+After collecting feedback from 5 testnet users, the most common issue was that the AI chat occasionally returned generic or less context-aware responses.
 
 ### Iteration Completed ✅
-**Issue identified:** AI chat sometimes returned generic responses  
 
-**Change made:** Improved prompt engineering and added Offline Mock Mode for consistent demo experience without API dependency
+**Issue identified:** AI chat lacked contextual depth for specific transaction queries  
+
+**Change made:** Improved prompt structuring and added Offline Mock Mode to ensure consistent and reliable responses during demos  
+
+**Files changed:**
+- src/utils/claudeClient.js — enhanced prompt logic + mock mode  
+- src/hooks/useWallet.js — improved wallet connection reliability  
 
 ---
 
