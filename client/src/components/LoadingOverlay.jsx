@@ -1,110 +1,134 @@
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, Loader2 } from 'lucide-react';
 
-const STEPS = [
-  'Fetching wallet from Stellar Horizon',
-  'Running AI analysis with Claude',
-  'Building your financial profile',
+const CYCLE_MESSAGES = [
+  { text: 'Connecting to Stellar Horizon...', color: 'var(--indigo)' },
+  { text: 'Fetching your transaction history...', color: 'var(--cyan)' },
+  { text: 'Running AI analysis...', color: 'var(--amber)' },
+  { text: 'Calculating your health score...', color: 'var(--green)' },
+  { text: 'Assigning your wallet personality...', color: 'var(--violet)' },
+  { text: 'Building your dashboard...', color: 'var(--indigo)' },
 ];
 
 export default function LoadingOverlay({ currentStep = 0 }) {
-  const messages = [
-    'Connecting to Stellar testnet...',
-    'Analyzing transactions with AI...',
-    'Assembling your dashboard...',
+  const [msgIdx, setMsgIdx] = useState(0);
+
+  useEffect(() => {
+    const intNum = setInterval(() => {
+      setMsgIdx((prev) => (prev + 1) % CYCLE_MESSAGES.length);
+    }, 2000);
+    return () => clearInterval(intNum);
+  }, []);
+
+  const progressPct = currentStep === 0 ? 33 : currentStep === 1 ? 66 : 100;
+
+  const STEPS = [
+    'Connect',
+    'Analyze',
+    'Dashboard'
   ];
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center"
-      style={{ background: 'var(--bg-primary)' }}
-    >
-      {/* Gradient orbs */}
-      <div
-        className="absolute w-96 h-96 rounded-full blur-3xl opacity-10 pointer-events-none"
-        style={{ background: 'var(--purple)', top: '20%', left: '30%' }}
+    <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[var(--bg-void)]">
+      {/* Orbs */}
+      <div 
+        className="absolute top-[-100px] left-[-100px] w-[400px] h-[400px] rounded-full blur-[100px] pointer-events-none"
+        style={{ background: 'var(--indigo)', animation: 'glowPulse 4s infinite ease-in-out' }} 
       />
-      <div
-        className="absolute w-80 h-80 rounded-full blur-3xl opacity-10 pointer-events-none"
-        style={{ background: 'var(--teal)', bottom: '20%', right: '30%' }}
+      <div 
+        className="absolute bottom-[-100px] right-[-100px] w-[400px] h-[400px] rounded-full blur-[100px] pointer-events-none"
+        style={{ background: 'var(--cyan)', animation: 'glowPulse 4s infinite ease-in-out 1s' }} 
       />
 
-      <div className="relative z-10 flex flex-col items-center gap-8 px-6 max-w-md w-full">
-        {/* Logo */}
-        <div className="flex flex-col items-center gap-3">
-          <div
-            className="w-20 h-20 rounded-2xl flex items-center justify-center font-display font-bold text-3xl text-white pulse-ring"
-            style={{ background: 'linear-gradient(135deg, var(--purple), var(--teal))' }}
-          >
-            SM
+      <div className="relative z-10 flex flex-col items-center gap-10">
+        
+        {/* Logo Mark + Wordmark */}
+        <div className="flex flex-col items-center gap-4 animate-float">
+          <div className="relative w-[72px] h-[72px] rounded-full flex items-center justify-center shadow-[var(--shadow-glow-indigo)]">
+             <div className="absolute inset-0 rounded-full border-[2px] border-transparent" 
+                  style={{
+                    background: 'conic-gradient(var(--indigo), var(--cyan), var(--indigo))',
+                    WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                    WebkitMaskComposite: 'xor',
+                    maskComposite: 'exclude',
+                    animation: 'orbit-cw 3s linear infinite'
+                  }} 
+             />
+             <div className="w-[68px] h-[68px] rounded-full bg-[var(--bg-surface)] flex items-center justify-center">
+                <span className="font-display font-bold text-[24px] text-white">SM</span>
+             </div>
           </div>
-          <h1 className="font-display font-bold text-2xl text-white">StellarMind</h1>
+          <h1 className="font-display font-bold text-[28px] text-grad m-0">StellarMind</h1>
         </div>
 
-        {/* Animated message */}
-        <AnimatePresence mode="wait">
-          <motion.p
-            key={currentStep}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            className="text-sm text-center"
-            style={{ color: 'var(--text-2)' }}
-          >
-            {messages[currentStep] || messages[0]}
-          </motion.p>
-        </AnimatePresence>
+        {/* Animated Loading Message */}
+        <div className="h-[30px] flex items-center justify-center">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={msgIdx}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              className="flex items-center gap-2"
+            >
+              <div className="w-[8px] h-[8px] rounded-full animate-pulseDot" style={{ background: CYCLE_MESSAGES[msgIdx].color }} />
+              <span className="font-mono text-[15px] text-[var(--t2)]">{CYCLE_MESSAGES[msgIdx].text}</span>
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
-        {/* Steps */}
-        <div className="w-full space-y-3">
-          {STEPS.map((step, i) => {
-            const done = i < currentStep;
-            const active = i === currentStep;
+        {/* Step Indicators */}
+        <div className="flex flex-col gap-4 w-[240px]">
+          {STEPS.map((stepMsg, i) => {
+            const isDone = i < currentStep;
+            const isActive = i === currentStep;
             return (
-              <div key={i} className="flex items-center gap-3">
-                <div
-                  className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-                  style={{
-                    background: done ? 'rgba(0,212,180,0.2)' : active ? 'rgba(124,92,252,0.2)' : 'rgba(255,255,255,0.05)',
-                    border: `1px solid ${done ? 'var(--teal)' : active ? 'var(--purple)' : 'var(--border-hover)'}`,
-                  }}
-                >
-                  {done ? (
-                    <Check className="w-4 h-4" style={{ color: 'var(--teal)' }} />
-                  ) : active ? (
-                    <Loader2 className="w-4 h-4 animate-spin" style={{ color: 'var(--purple)' }} />
-                  ) : (
-                    <div className="w-2 h-2 rounded-full" style={{ background: 'var(--text-3)' }} />
+              <div key={i} className="flex items-center gap-4">
+                <div className="w-[32px] h-[32px] rounded-full flex items-center justify-center shrink-0 border border-solid relative"
+                     style={{ 
+                       borderColor: isActive ? 'var(--indigo)' : isDone ? 'var(--green)' : 'var(--b2)',
+                       background: isActive ? 'var(--indigo-dim)' : isDone ? 'var(--green-dim)' : 'transparent' 
+                     }}>
+                  
+                  {isActive && (
+                    <div className="absolute inset-0 rounded-full border-[2px] border-[var(--indigo)] border-t-transparent animate-spin opacity-50" />
                   )}
+
+                  {isDone ? (
+                    <Check className="w-[14px] h-[14px] text-[var(--green)] animate-scaleUp" />
+                  ) : isActive ? (
+                    <div className="w-[6px] h-[6px] rounded-full bg-[var(--indigo)] animate-pulseDot" />
+                  ) : null}
                 </div>
-                <span
-                  className="text-sm"
-                  style={{
-                    color: done ? 'var(--teal)' : active ? 'var(--text-1)' : 'var(--text-3)',
-                    fontWeight: active ? 500 : 400,
-                  }}
-                >
-                  {step}
+                <span className={`text-[14px] ${isDone ? 'line-through opacity-50' : ''}`}
+                      style={{ color: isActive ? 'var(--t1)' : isDone ? 'var(--t2)' : 'var(--t3)' }}>
+                  {stepMsg}
+                  {isActive && <span className="inline-block ml-1">...</span>}
                 </span>
               </div>
             );
           })}
         </div>
 
-        {/* Progress bar */}
-        <div className="w-full h-1 rounded-full overflow-hidden" style={{ background: 'var(--border)' }}>
-          <motion.div
-            className="h-full rounded-full"
-            style={{ background: 'linear-gradient(90deg, var(--purple), var(--teal))' }}
-            initial={{ width: '0%' }}
-            animate={{ width: `${((currentStep + 1) / 3) * 100}%` }}
-            transition={{ duration: 0.5 }}
+        {/* Progress Bar */}
+        <div className="w-[200px] h-[3px] bg-[var(--bg-overlay)] rounded-[10px] overflow-hidden">
+          <div 
+             className="h-full rounded-[10px]"
+             style={{
+               background: 'linear-gradient(90deg, var(--indigo), var(--cyan))',
+               width: `${progressPct}%`,
+               transition: 'width 0.8s cubic-bezier(0.16,1,0.3,1)'
+             }}
           />
         </div>
 
-        <p className="text-xs" style={{ color: 'var(--text-3)' }}>
-          Powered by Stellar Horizon + Claude AI • This takes about 10 seconds
-        </p>
+        {/* Footer text */}
+        <div className="mt-8 text-[11px] text-[var(--t3)] tracking-wide uppercase">
+          Powered by Stellar + Claude AI
+        </div>
+
       </div>
     </div>
   );

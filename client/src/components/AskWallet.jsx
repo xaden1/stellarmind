@@ -1,14 +1,17 @@
-import { useRef, useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Send, Loader2 } from 'lucide-react';
 
 const SUGGESTIONS = [
-  "Was last month my best month?",
-  "Who do I send money to most?",
-  "Am I diversified enough?",
-  "What's my biggest transaction?",
+  "Was March my best month?",
+  "Who do I transact with most?",
+  "Am I diversified?",
+  "Biggest transaction?",
+  "How active this month?",
+  "Any risky patterns?"
 ];
 
-export default function AskWallet({ walletAddress, walletData, chatHistory = [], onSend, chatLoading }) {
+export default function AskWallet({ chatHistory = [], onSend, onClear, chatLoading }) {
   const [input, setInput] = useState('');
   const bottomRef = useRef(null);
 
@@ -17,115 +20,154 @@ export default function AskWallet({ walletAddress, walletData, chatHistory = [],
   }, [chatHistory, chatLoading]);
 
   const handleSend = (text) => {
-    const q = text || input.trim();
+    const q = (text || input).trim();
     if (!q) return;
     onSend(q);
     setInput('');
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.05 }
+    }
+  };
+
+  const chipItem = {
+    hidden: { opacity: 0, y: 10 },
+    show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 300, damping: 24 } }
+  };
+
   return (
-    <div className="glass-card flex flex-col" style={{ height: 420 }}>
-      <div className="px-5 py-4 border-b" style={{ borderColor: '#1E293B' }}>
-        <h3 className="text-sm font-medium text-white flex items-center gap-2">
-          <span className="text-lg">💬</span> Ask Your Wallet
+    <div className="card flex flex-col h-full min-h-[500px]">
+      {/* Header */}
+      <div className="flex justify-between items-center px-6 py-4 border-b border-[var(--b1)] shrink-0">
+        <h3 className="font-display font-semibold text-[16px] text-[var(--t1)] m-0">
+          💬 Ask Your Wallet
         </h3>
-        <p className="text-xs text-slate-500 mt-0.5">Chat with your transaction history in plain English</p>
+        <button 
+          onClick={onClear} 
+          className="text-[12px] text-[var(--t3)] hover:text-[var(--t1)] transition-colors px-2 py-1"
+        >
+          Clear
+        </button>
       </div>
 
+      {/* Suggested chips (only when empty) */}
+      {chatHistory.length === 0 && (
+         <div className="px-6 pt-4 pb-2 w-full overflow-x-auto shrink-0 [&::-webkit-scrollbar]:hidden">
+           <motion.div 
+             variants={staggerContainer} 
+             initial="hidden" 
+             animate="show" 
+             className="flex gap-2"
+           >
+             {SUGGESTIONS.map((str, i) => (
+                <motion.button
+                   key={i}
+                   variants={chipItem}
+                   whileTap={{ scale: 0.97 }}
+                   onClick={() => handleSend(str)}
+                   className="whitespace-nowrap bg-[var(--bg-elevated)] border border-[var(--b2)] rounded-[20px] px-[14px] py-[6px] text-[13px] text-[var(--t2)] hover:text-[var(--t1)] hover:border-[var(--indigo)] hover:bg-[var(--indigo-dim)] transition-colors cursor-pointer"
+                >
+                  {str}
+                </motion.button>
+             ))}
+           </motion.div>
+         </div>
+      )}
+
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
-        {chatHistory.length === 0 && (
-          <div className="text-center py-8">
-            <div className="text-3xl mb-2">🤖</div>
-            <p className="text-xs text-slate-500">Hi! I'm StellarMind. Ask me anything about your wallet.</p>
-          </div>
-        )}
-        {chatHistory.map((msg, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} gap-2`}
-          >
-            {msg.role === 'assistant' && (
-              <div
-                className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold text-white"
-                style={{ background: 'linear-gradient(135deg,#7C5CFC,#00D4B4)' }}
+      <div className="flex-1 overflow-y-auto px-6 py-4 flex flex-col gap-5 [&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar-thumb]:bg-[var(--indigo)] [&::-webkit-scrollbar-track]:bg-transparent">
+        <AnimatePresence>
+          {chatHistory.map((msg, idx) => {
+            const isUser = msg.role === 'user';
+            const timeStr = new Date(msg.timestamp || Date.now()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, x: isUser ? 10 : -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                className={`flex gap-[10px] w-full ${isUser ? 'justify-end' : 'justify-start items-start'}`}
               >
-                SM
-              </div>
-            )}
-            <div
-              className={`max-w-xs px-3 py-2 text-xs leading-relaxed ${msg.role === 'user' ? 'chat-bubble-user text-white' : 'chat-bubble-ai text-slate-300'}`}
-            >
-              {msg.content}
-            </div>
-          </motion.div>
-        ))}
+                {!isUser && (
+                  <div className="w-[28px] h-[28px] rounded-full shrink-0 flex items-center justify-center text-white font-display text-[10px] bg-[linear-gradient(135deg,var(--indigo),var(--cyan))]">
+                    SM
+                  </div>
+                )}
+                
+                <div className="flex flex-col gap-1" style={{ alignItems: isUser ? 'flex-end' : 'flex-start' }}>
+                  <div
+                    className="px-[16px] py-[12px] text-[14px] font-body leading-[1.6]"
+                    style={{
+                      maxWidth: '85%',
+                      background: isUser ? 'linear-gradient(135deg, var(--indigo), #4F46E5)' : 'var(--bg-elevated)',
+                      border: isUser ? 'none' : '1px solid var(--b2)',
+                      borderRadius: isUser ? '16px 4px 16px 16px' : '4px 16px 16px 16px',
+                      color: isUser ? 'white' : 'var(--t1)'
+                    }}
+                  >
+                    {msg.content}
+                  </div>
+                  <span className="text-[10px] text-[var(--t3)] font-mono px-1">{timeStr}</span>
+                </div>
+              </motion.div>
+            );
+          })}
+        </AnimatePresence>
+
+        {/* Loading Indicator */}
         {chatLoading && (
-          <div className="flex justify-start gap-2">
-            <div
-              className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold text-white"
-              style={{ background: 'linear-gradient(135deg,#7C5CFC,#00D4B4)' }}
-            >
+          <motion.div
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="flex gap-[10px] items-start w-full justify-start"
+          >
+            <div className="w-[28px] h-[28px] rounded-full shrink-0 flex items-center justify-center text-white font-display text-[10px] bg-[linear-gradient(135deg,var(--indigo),var(--cyan))]">
               SM
             </div>
-            <div className="chat-bubble-ai px-4 py-2.5">
-              <div className="flex gap-1">
-                {[0,1,2].map(i => (
-                  <motion.div
-                    key={i}
-                    className="w-1.5 h-1.5 rounded-full bg-slate-400"
-                    animate={{ opacity: [0.3,1,0.3] }}
-                    transition={{ duration: 1, repeat: Infinity, delay: i * 0.2 }}
-                  />
-                ))}
-              </div>
+            <div className="px-[16px] py-[12px] bg-[var(--bg-elevated)] border border-[var(--b2)] rounded-[4px_16px_16px_16px] flex gap-1 h-[46px] items-center">
+               <span className="chat-dot" />
+               <span className="chat-dot" />
+               <span className="chat-dot" />
             </div>
-          </div>
+          </motion.div>
         )}
+        
         <div ref={bottomRef} />
       </div>
 
-      {/* Suggestions */}
-      {chatHistory.length < 2 && (
-        <div className="px-4 py-2 flex gap-2 overflow-x-auto">
-          {SUGGESTIONS.map((s, i) => (
-            <button
-              key={i}
-              onClick={() => handleSend(s)}
-              className="flex-shrink-0 px-3 py-1.5 rounded-full text-xs text-slate-300 hover:text-white transition-colors whitespace-nowrap"
-              style={{ background: '#0D1425', border: '1px solid #1E293B' }}
-            >
-              {s}
-            </button>
-          ))}
-        </div>
-      )}
-
-      {/* Input */}
-      <div className="px-4 py-3 border-t flex gap-2" style={{ borderColor: '#1E293B' }}>
-        <input
-          type="text"
-          value={input}
-          onChange={e => setInput(e.target.value)}
-          onKeyDown={e => e.key === 'Enter' && handleSend()}
-          placeholder="Ask about your wallet..."
-          className="flex-1 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 outline-none focus:ring-1"
-          style={{ background: '#0D1425', border: '1px solid #1E293B', '--tw-ring-color': '#7C5CFC' }}
-          disabled={chatLoading}
-        />
-        <button
-          onClick={() => handleSend()}
-          disabled={chatLoading || !input.trim()}
-          className="w-9 h-9 rounded-xl flex items-center justify-center transition-opacity disabled:opacity-40"
-          style={{ background: 'linear-gradient(135deg,#7C5CFC,#5B3FD4)' }}
-        >
-          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-          </svg>
-        </button>
+      {/* Input Area */}
+      <div className="flex gap-[8px] px-6 py-4 border-t border-[var(--b1)] shrink-0 items-center bg-[var(--bg-surface)]">
+         <input 
+           type="text"
+           value={input}
+           onChange={(e) => setInput(e.target.value)}
+           onKeyDown={handleKeyDown}
+           placeholder="Ask anything about your wallet..."
+           disabled={chatLoading}
+           className="input flex-1"
+         />
+         <motion.button
+           whileTap={(!chatLoading && input.trim()) ? { scale: 0.95 } : {}}
+           onClick={() => handleSend()}
+           disabled={chatLoading || !input.trim()}
+           className="btn btn-primary w-[40px] h-[40px] shrink-0 p-0 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+           style={{ padding: 0 }} // Override padding
+         >
+           {chatLoading ? <Loader2 className="w-[14px] h-[14px] animate-spin" /> : <Send className="w-[14px] h-[14px]" />}
+         </motion.button>
       </div>
+
     </div>
   );
 }

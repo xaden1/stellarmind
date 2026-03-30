@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Toaster } from 'react-hot-toast';
 import { useWallet } from './hooks/useWallet';
@@ -7,11 +7,59 @@ import Landing from './pages/Landing';
 import Dashboard from './pages/Dashboard';
 import Report from './pages/Report';
 
+// Define the transition styles for different pages
 const pageVariants = {
-  initial: { opacity: 0, y: 10 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.35 } },
-  exit:    { opacity: 0, y: -10, transition: { duration: 0.2 } },
+  initial: { opacity: 0, scale: 0.98 },
+  animate: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
+  exit:    { opacity: 0, scale: 1.02, transition: { duration: 0.3, ease: 'easeInOut' } },
 };
+
+function AnimatedRoutes({ walletAddress, connect, disconnect, isConnecting, error }) {
+  const location = useLocation();
+  
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route
+          path="/"
+          element={
+            walletAddress ? (
+              <Navigate to="/dashboard" replace />
+            ) : (
+              <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" className="w-full">
+                <Landing onConnect={connect} isConnecting={isConnecting} connectError={error} />
+              </motion.div>
+            )
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            walletAddress ? (
+              <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" className="w-full">
+                <Dashboard walletAddress={walletAddress} onDisconnect={disconnect} />
+              </motion.div>
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
+        <Route
+          path="/report"
+          element={
+            walletAddress ? (
+              <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" className="w-full">
+                <Report walletAddress={walletAddress} />
+              </motion.div>
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
+      </Routes>
+    </AnimatePresence>
+  );
+}
 
 export default function App() {
   const { walletAddress, connect, disconnect, isConnecting, error } = useWallet();
@@ -22,56 +70,25 @@ export default function App() {
         position="top-right"
         toastOptions={{
           style: {
-            background: '#0F1629',
-            color: '#F8FAFC',
-            border: '1px solid rgba(124,92,252,0.3)',
-            borderRadius: '10px',
+            background: 'var(--bg-elevated)',
+            color: 'var(--t1)',
+            border: '1px solid var(--b2)',
+            borderRadius: '12px',
             fontFamily: 'DM Sans, sans-serif',
-            fontSize: 14,
+            fontSize: '14px',
+            backdropFilter: 'blur(10px)',
+            boxShadow: 'var(--shadow-xl)',
           },
         }}
       />
       <Navbar walletAddress={walletAddress} onDisconnect={disconnect} />
-      <AnimatePresence mode="wait">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              walletAddress ? (
-                <Navigate to="/dashboard" replace />
-              ) : (
-                <motion.div key="landing" variants={pageVariants} initial="initial" animate="animate" exit="exit">
-                  <Landing onConnect={connect} isConnecting={isConnecting} connectError={error} />
-                </motion.div>
-              )
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              walletAddress ? (
-                <motion.div key="dashboard" variants={pageVariants} initial="initial" animate="animate" exit="exit">
-                  <Dashboard walletAddress={walletAddress} onDisconnect={disconnect} />
-                </motion.div>
-              ) : (
-                <Navigate to="/" replace />
-              )
-            }
-          />
-          <Route
-            path="/report"
-            element={
-              walletAddress ? (
-                <motion.div key="report" variants={pageVariants} initial="initial" animate="animate" exit="exit">
-                  <Report walletAddress={walletAddress} />
-                </motion.div>
-              ) : (
-                <Navigate to="/" replace />
-              )
-            }
-          />
-        </Routes>
-      </AnimatePresence>
+      <AnimatedRoutes 
+        walletAddress={walletAddress} 
+        connect={connect} 
+        disconnect={disconnect} 
+        isConnecting={isConnecting} 
+        error={error} 
+      />
     </BrowserRouter>
   );
 }

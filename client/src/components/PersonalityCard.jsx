@@ -1,70 +1,118 @@
-import { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
+import { ArrowRight, TrendingUp, TrendingDown, Minus } from 'lucide-react';
 
 export default function PersonalityCard({ personality = {}, monthlyTrend = 'stable' }) {
-  const [flipped, setFlipped] = useState(false);
+  const archetypeColors = {
+    'The Hodler': 'var(--indigo)',
+    'The Trader': 'var(--amber)',
+    'The Philanthropist': 'var(--cyan)',
+    'The Builder': 'var(--violet)',
+    'The Explorer': 'var(--green)',
+    'The Whale-in-Training': '#F59E0B',
+  };
+
+  const archetype = personality.archetype || 'The Explorer';
+  const color = archetypeColors[archetype] || 'var(--indigo)';
+  
+  const isWhale = archetype === 'The Whale-in-Training';
 
   const trendConfig = {
-    improving: { icon: '↑', label: 'Improving', color: '#00D4B4' },
-    stable: { icon: '→', label: 'Stable', color: '#7C5CFC' },
-    declining: { icon: '↓', label: 'Declining', color: '#F97316' }
+    improving: { icon: ArrowRight, class: 'badge-green', label: '↑ Improving' },
+    stable: { icon: Minus, class: 'badge-indigo', label: '→ Stable' },
+    declining: { icon: TrendingDown, class: 'badge-red', label: '↓ Declining' }
   };
   const trend = trendConfig[monthlyTrend] || trendConfig.stable;
 
-  return (
-    <div
-      className="relative cursor-pointer"
-      style={{ perspective: '1000px', height: '100%', minHeight: 220 }}
-      onClick={() => setFlipped(!flipped)}
-    >
-      <motion.div
-        animate={{ rotateY: flipped ? 180 : 0 }}
-        transition={{ duration: 0.5, ease: 'easeInOut' }}
-        style={{ transformStyle: 'preserve-3d', position: 'relative', width: '100%', height: '100%' }}
-      >
-        {/* Front */}
-        <div
-          className="gradient-border absolute inset-0 glass-card p-5 flex flex-col items-center justify-center text-center"
-          style={{ backfaceVisibility: 'hidden' }}
-        >
-          <div className="text-5xl mb-3">{personality.emoji || '🧭'}</div>
-          <h3 className="gradient-text font-display font-bold text-lg mb-2">
-            {personality.archetype || 'The Explorer'}
-          </h3>
-          <p className="text-slate-400 text-xs leading-relaxed mb-4">
-            {personality.description || 'Your financial journey on Stellar is unique.'}
-          </p>
-          <div
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium"
-            style={{ background: `${trend.color}20`, color: trend.color, border: `1px solid ${trend.color}40` }}
-          >
-            <span>{trend.icon}</span>
-            <span>{trend.label}</span>
-          </div>
-          <p className="text-slate-600 text-xs mt-3">Tap to flip →</p>
-        </div>
+  // Derive DNA scores (0-100) purely for visual purposes
+  const getDnaScores = (type) => {
+    switch (type) {
+      case 'The Hodler': return [20, 10, 40, 30];
+      case 'The Trader': return [90, 95, 80, 70];
+      case 'The Explorer': return [60, 50, 90, 80];
+      case 'The Builder': return [40, 60, 50, 95];
+      case 'The Philanthropist': return [50, 40, 60, 90];
+      case 'The Whale-in-Training': return [80, 70, 85, 60];
+      default: return [50, 50, 50, 50];
+    }
+  };
+  const scores = getDnaScores(archetype);
 
-        {/* Back */}
-        <div
-          className="gradient-border absolute inset-0 glass-card p-5 flex flex-col items-center justify-center text-center"
-          style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
-        >
-          <h3 className="font-display font-bold text-sm gradient-text mb-4">Your Financial DNA</h3>
-          <div className="space-y-3 w-full">
-            {[
-              { label: 'Risk Appetite', value: personality.archetype?.includes('Trader') ? 'High' : 'Moderate', color: '#F97316' },
-              { label: 'Time Horizon', value: personality.archetype?.includes('Hodler') ? 'Long-term' : 'Mixed', color: '#00D4B4' },
-              { label: 'Active Style', value: personality.archetype?.includes('Philanthropist') ? 'Giving' : 'Earning', color: '#7C5CFC' },
-            ].map(({ label, value, color }) => (
-              <div key={label} className="flex justify-between items-center">
-                <span className="text-xs text-slate-500">{label}</span>
-                <span className="text-xs font-medium px-2 py-0.5 rounded" style={{ color, background: `${color}20` }}>{value}</span>
+  return (
+    <div className="w-full h-full relative" style={{ perspective: 1000, minHeight: 320 }}>
+      {/* Front Face Hover triggers rotation of the inner container via CSS group */}
+      <div className="w-full h-full group">
+         <div className="w-full h-full relative transition-[transform] duration-[0.6s] ease-[cubic-bezier(0.16,1,0.3,1)]" 
+              style={{ transformStyle: 'preserve-3d' }}
+         >
+           <style>{`
+             .group:hover > div { transform: rotateY(180deg); }
+           `}</style>
+           
+           {/* FRONT FACE */}
+           <div className="absolute inset-0 card personality-pattern card-glow-indigo p-6 flex flex-col items-center justify-between"
+                style={{ backfaceVisibility: 'hidden' }}>
+              
+              <div className="w-full flex justify-end">
+                 <div className={`badge ${trend.class}`}>{trend.label}</div>
               </div>
-            ))}
-          </div>
-          <p className="text-slate-600 text-xs mt-4">Tap to flip back</p>
-        </div>
-      </motion.div>
+
+              <div className="flex flex-col items-center justify-center flex-1">
+                 <div className="text-[64px] animate-float drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                   {personality.emoji || '🧭'}
+                 </div>
+                 
+                 <h2 className={`font-display font-bold text-[22px] mt-4 mb-2 ${isWhale ? 'text-grad-gold' : ''}`}
+                     style={!isWhale ? { color } : {}}>
+                   {archetype}
+                 </h2>
+                 
+                 <p className="font-body text-[14px] text-[var(--t2)] text-center w-full max-w-[240px] leading-[1.6]">
+                   {personality.description || 'You love trying new things on the network. Your wallet shows curiosity.'}
+                 </p>
+              </div>
+
+              <div className="w-full flex justify-center mt-2">
+                 <div className="flex items-center gap-1 text-[var(--t3)] text-[12px] font-medium tracking-wide">
+                    Your Financial DNA <ArrowRight className="w-3 h-3 ml-1" />
+                 </div>
+              </div>
+           </div>
+
+           {/* BACK FACE */}
+           <div className="absolute inset-0 card p-6 flex flex-col items-center justify-center"
+                style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+                
+                <h3 className="font-display text-[16px] text-grad font-bold mb-6">Financial DNA Breakdown</h3>
+                
+                <div className="w-full space-y-5">
+                   {[
+                     { label: 'Risk Tolerance', val: scores[0] },
+                     { label: 'Trading Freq', val: scores[1] },
+                     { label: 'Asset Diversity', val: scores[2] },
+                     { label: 'Network Engagement', val: scores[3] },
+                   ].map((item, i) => (
+                     <div key={i} className="flex flex-col gap-1.5">
+                       <div className="flex justify-between items-center text-[12px] font-medium text-[var(--t2)] uppercase tracking-wide">
+                          <span>{item.label}</span>
+                          <span>{item.val >= 70 ? 'High' : item.val >= 40 ? 'Med' : 'Low'}</span>
+                       </div>
+                       <div className="w-full h-[4px] bg-[var(--bg-overlay)] rounded-full overflow-hidden flex">
+                          <motion.div 
+                             className="h-full rounded-full"
+                             style={{ background: `linear-gradient(90deg, ${color}, var(--cyan))` }}
+                             initial={{ width: 0 }}
+                             whileInView={{ width: `${item.val}%` }}
+                             transition={{ duration: 1, ease: 'easeOut' }}
+                             viewport={{ once: true }}
+                          />
+                       </div>
+                     </div>
+                   ))}
+                </div>
+           </div>
+         </div>
+      </div>
     </div>
   );
 }

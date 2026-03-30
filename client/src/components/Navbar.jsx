@@ -1,111 +1,127 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { truncateAddress } from '../utils/formatters';
+import { Copy, Check, LogOut, Menu, X } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 export default function Navbar({ walletAddress, onDisconnect }) {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
-  const isDashboard = location.pathname !== '/';
+  const [copied, setCopied] = useState(false);
+
+  const isConnected = !!walletAddress;
+
+  const truncateAddress = (addr) => {
+    if (!addr) return '';
+    return `${addr.slice(0, 5)}...${addr.slice(-5)}`;
+  };
 
   const copyAddress = () => {
     if (walletAddress) {
       navigator.clipboard.writeText(walletAddress);
+      setCopied(true);
+      toast.success('Copied!', {
+        style: {
+          background: 'var(--bg-elevated)',
+          color: 'var(--t1)',
+          border: '1px solid var(--b2)'
+        }
+      });
+      setTimeout(() => setCopied(false), 2000);
     }
   };
 
   return (
-    <nav
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-      style={{
-        background: isDashboard ? 'rgba(6, 11, 24, 0.9)' : 'transparent',
-        backdropFilter: isDashboard ? 'blur(12px)' : 'none',
-        borderBottom: isDashboard ? '1px solid #1E293B' : 'none'
-      }}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-3">
-          <div
-            className="w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold text-sm"
-            style={{ background: 'linear-gradient(135deg, #7C5CFC, #00D4B4)' }}
-          >
-            SM
-          </div>
-          <span className="font-display font-bold text-lg text-white hidden sm:block">StellarMind</span>
-        </Link>
+    <nav className="fixed top-0 left-0 right-0 z-[100] h-[60px] px-6 flex items-center justify-between transition-all duration-300 backdrop-blur-[20px] saturate-[180%] bg-[rgba(5,11,20,0.8)] border-b border-[var(--b1)]">
+      
+      {/* LEFT: Logo group */}
+      <Link to="/" className="flex items-center gap-[10px]">
+        <div className="w-[32px] h-[32px] rounded-full flex items-center justify-center font-display font-bold text-[13px] text-white"
+             style={{ background: 'linear-gradient(135deg, var(--indigo), var(--cyan))' }}>
+          SM
+        </div>
+        <span className="font-display font-bold text-[17px] text-grad hidden sm:block">StellarMind</span>
+      </Link>
 
-        {/* Center Nav */}
-        {walletAddress && (
-          <div className="hidden md:flex items-center gap-6">
-            <Link
-              to="/dashboard"
-              className={`text-sm font-medium transition-colors ${location.pathname === '/dashboard' ? 'text-white' : 'text-slate-400 hover:text-white'}`}
-            >
+      {/* CENTER: Nav links (only when connected) */}
+      {isConnected && (
+        <div className="hidden md:flex items-center gap-8 relative h-full">
+          <Link to="/dashboard" className="relative flex items-center h-full">
+            <span className={`font-body text-[14px] font-medium transition-colors ${location.pathname === '/dashboard' ? 'text-grad' : 'text-[var(--t2)] hover:text-[var(--t1)]'}`}>
               Dashboard
-            </Link>
-            <Link
-              to="/report"
-              className={`text-sm font-medium transition-colors ${location.pathname === '/report' ? 'text-white' : 'text-slate-400 hover:text-white'}`}
-            >
+            </span>
+            {location.pathname === '/dashboard' && (
+              <motion.div layoutId="nav-underline" className="absolute bottom-0 left-0 right-0 h-[2px]" style={{ background: 'linear-gradient(90deg, var(--indigo), var(--cyan))' }} />
+            )}
+          </Link>
+          <Link to="/report" className="relative flex items-center h-full">
+            <span className={`font-body text-[14px] font-medium transition-colors ${location.pathname === '/report' ? 'text-grad' : 'text-[var(--t2)] hover:text-[var(--t1)]'}`}>
               Report
-            </Link>
+            </span>
+            {location.pathname === '/report' && (
+              <motion.div layoutId="nav-underline" className="absolute bottom-0 left-0 right-0 h-[2px]" style={{ background: 'linear-gradient(90deg, var(--indigo), var(--cyan))' }} />
+            )}
+          </Link>
+        </div>
+      )}
+
+      {/* RIGHT: Action buttons */}
+      <div className="flex items-center gap-4">
+        {isConnected && (
+          <div className="hidden sm:flex items-center gap-4">
+            {/* Wallet chip */}
+            <div className="flex items-center px-[12px] py-[6px] gap-2 rounded-[20px] bg-[var(--bg-elevated)] border border-[var(--b2)] hover:border-[var(--indigo)] transition-colors group">
+              <div className="w-[8px] h-[8px] rounded-full bg-[var(--green)] animate-pulseDot" />
+              <span className="font-mono text-[12px] text-[var(--t1)]">
+                {truncateAddress(walletAddress)}
+              </span>
+              <button onClick={copyAddress} className="text-[var(--t3)] hover:text-[var(--indigo)] transition-colors ml-1" title="Copy Address">
+                {copied ? <Check className="w-[14px] h-[14px] text-[var(--green)]" /> : <Copy className="w-[14px] h-[14px]" />}
+              </button>
+            </div>
+
+            {/* Divider */}
+            <div className="w-[1px] h-[20px] bg-[var(--b2)]" />
+
+            {/* Disconnect */}
+            <button onClick={onDisconnect} className="btn btn-danger hover:border-[var(--red)] hover:text-[var(--red)] px-[12px] py-[6px] rounded-[8px] flex items-center gap-2">
+              <LogOut className="w-[14px] h-[14px]" />
+              <span className="hidden lg:inline">Disconnect</span>
+            </button>
           </div>
         )}
 
-        {/* Right side */}
-        <div className="flex items-center gap-3">
-          {walletAddress ? (
-            <>
-              <button
-                onClick={copyAddress}
-                className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-mono text-slate-300 hover:text-white transition-colors"
-                style={{ background: '#111827', border: '1px solid #1E293B' }}
-              >
-                <span
-                  className="w-2 h-2 rounded-full"
-                  style={{ background: '#00D4B4' }}
-                />
-                {truncateAddress(walletAddress, 6)}
-              </button>
-              <button
-                onClick={onDisconnect}
-                className="px-3 py-1.5 rounded-lg text-xs font-medium text-red-400 hover:text-red-300 transition-colors"
-                style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)' }}
-              >
-                Disconnect
-              </button>
-            </>
-          ) : null}
-
-          {/* Mobile hamburger */}
-          {walletAddress && (
-            <button
-              className="md:hidden text-slate-400 hover:text-white"
-              onClick={() => setMenuOpen(!menuOpen)}
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={menuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'} />
-              </svg>
-            </button>
-          )}
-        </div>
+        {/* Hamburger */}
+        {isConnected && (
+          <button className="md:hidden text-[var(--t2)] hover:text-[var(--t1)] p-2" onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        )}
       </div>
 
-      {/* Mobile menu */}
+      {/* MOBILE MENU */}
       <AnimatePresence>
-        {menuOpen && walletAddress && (
+        {menuOpen && isConnected && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden px-4 pb-4"
-            style={{ background: 'rgba(6,11,24,0.95)', borderTop: '1px solid #1E293B' }}
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="absolute top-[60px] left-0 right-0 overflow-hidden backdrop-blur-xl bg-[rgba(10,18,32,0.98)] border-b border-[var(--b1)] shadow-2xl md:hidden flex flex-col"
           >
-            <div className="flex flex-col gap-3 pt-4">
-              <Link to="/dashboard" className="text-slate-300 hover:text-white py-2" onClick={() => setMenuOpen(false)}>Dashboard</Link>
-              <Link to="/report" className="text-slate-300 hover:text-white py-2" onClick={() => setMenuOpen(false)}>Report</Link>
-              <p className="text-xs font-mono text-slate-500 py-2">{truncateAddress(walletAddress, 8)}</p>
+            <Link to="/dashboard" onClick={() => setMenuOpen(false)} className={`w-full h-[48px] flex items-center px-6 border-b border-[var(--b1)] font-medium ${location.pathname === '/dashboard' ? 'text-[var(--indigo-bright)]' : 'text-[var(--t1)]'}`}>
+              Dashboard
+            </Link>
+            <Link to="/report" onClick={() => setMenuOpen(false)} className={`w-full h-[48px] flex items-center px-6 border-b border-[var(--b1)] font-medium ${location.pathname === '/report' ? 'text-[var(--indigo-bright)]' : 'text-[var(--t1)]'}`}>
+              Report
+            </Link>
+            <div className="w-full h-[48px] flex items-center justify-between px-6 border-b border-[var(--b1)]">
+               <div className="flex items-center gap-2">
+                 <div className="w-2 h-2 rounded-full bg-[var(--green)] animate-pulseDot" />
+                 <span className="font-mono text-[13px] text-[var(--t2)]">{truncateAddress(walletAddress)}</span>
+               </div>
+               <button onClick={onDisconnect} className="text-[var(--red)] text-sm font-medium flex items-center gap-2">
+                 <LogOut className="w-4 h-4" /> Disconnect
+               </button>
             </div>
           </motion.div>
         )}
