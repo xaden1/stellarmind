@@ -2,7 +2,6 @@
 
 > AI-Powered Financial Intelligence for Your Stellar Wallet — 100% in the Browser
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-7C5CFC?style=for-the-badge)](YOUR_VERCEL_URL)
 [![Stellar](https://img.shields.io/badge/Built_on-Stellar-00D4B4?style=for-the-badge)](https://stellar.org)
 [![Claude AI](https://img.shields.io/badge/AI-Claude-7C5CFC?style=for-the-badge)](https://anthropic.com)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](./LICENSE)
@@ -14,8 +13,8 @@
 
 ## 📸 Screenshots
 
-Dashboard <img width="1739" height="808" alt="image" src="https://github.com/user-attachments/assets/f62ec82d-12c6-4f02-9756-8b25a98328eb" />
-Report <img width="1636" height="809" alt="image" src="https://github.com/user-attachments/assets/4daede1b-ae34-4732-a986-66fa85780b0d" />
+Dashboard <img width="100%" height="808" alt="image" src="https://github.com/user-attachments/assets/f62ec82d-12c6-4f02-9756-8b25a98328eb" />
+Report <img width="100%" height="809" alt="image" src="https://github.com/user-attachments/assets/4daede1b-ae34-4732-a986-66fa85780b0d" />
 
 ---
 
@@ -141,11 +140,11 @@ All wallets listed below are real Stellar testnet addresses, verifiable on [Stel
 
 | # | Name | Wallet Address | Stellar Expert Link |
 |---|------|---------------|---------------------|
-| 1 | [Alex] | `GBOO...WUZT` | [View →](https://stellar.expert/explorer/testnet/account/GBOODSECIOUWR4ABDT5AINWH6EXEAPH7NIHS7ITMZISNESMJVMGLWUZT) |
-| 2 | [Riya] | `GAUQ...UF3I` | [View →](https://stellar.expert/explorer/testnet/account/GAUQTIEW5ISIXY2MUSQ6Z7P5VXV4VRIGH5WTNLNEBI5IV3UP4R6WUF3I) |
-| 3 | [Tay] | `GCIA...WIPM` | [View →](https://stellar.expert/explorer/testnet/account/GCIASB3TL5YNZ7ALYMTC6AHWZY2ZSTWAM56POIPEJIBQTPCRT6QFWIPM) |
-| 4 | [Jb] | `GBGU...W5X7` | [View →](https://stellar.expert/explorer/testnet/account/GBGUGP7AOXMF5VAXN6BLEVQJW23MXCRGIK2XPXOD77YTNW3S5DZAW5X7) |
-| 5 | [Pia] | `GBMU...ESDK` | [View →](https://stellar.expert/explorer/testnet/account/GBMUPHZ75PBNSR6PZPX2J44UCO2QN5E46DFAKYAAVHI5NKS6GNF4ESDK) |
+| 1 | Alex | `GBOO...WUZT` | [View →](https://stellar.expert/explorer/testnet/account/GBOODSECIOUWR4ABDT5AINWH6EXEAPH7NIHS7ITMZISNESMJVMGLWUZT) |
+| 2 | Riya | `GAUQ...UF3I` | [View →](https://stellar.expert/explorer/testnet/account/GAUQTIEW5ISIXY2MUSQ6Z7P5VXV4VRIGH5WTNLNEBI5IV3UP4R6WUF3I) |
+| 3 | Tay | `GCIA...WIPM` | [View →](https://stellar.expert/explorer/testnet/account/GCIASB3TL5YNZ7ALYMTC6AHWZY2ZSTWAM56POIPEJIBQTPCRT6QFWIPM) |
+| 4 | Jb | `GBGU...W5X7` | [View →](https://stellar.expert/explorer/testnet/account/GBGUGP7AOXMF5VAXN6BLEVQJW23MXCRGIK2XPXOD77YTNW3S5DZAW5X7) |
+| 5 | Pia | `GBMU...ESDK` | [View →](https://stellar.expert/explorer/testnet/account/GBMUPHZ75PBNSR6PZPX2J44UCO2QN5E46DFAKYAAVHI5NKS6GNF4ESDK) |
 
 ---
 
@@ -168,11 +167,11 @@ The form collects:
 
 | Tester | Rating | Favourite Feature | Main Feedback |
 |--------|--------|------------------|---------------|
-| [Alex] | ⭐⭐⭐⭐⭐ | AI Chat | "Loved asking my wallet questions!" |
-| [Riya] | ⭐⭐⭐⭐ | Health Score | "Clean UI, great breakdown" |
-| [Tanmay] | ⭐⭐⭐⭐⭐ | Heatmap | "Very visual, easy to understand" |
-| [Jb] | ⭐⭐⭐⭐ | Personality Card | "Fun and accurate!" |
-| [Pia] | ⭐⭐⭐⭐⭐ | Report Generation | "Professional output" |
+| Alex | ⭐⭐⭐⭐⭐ | AI Chat | "Loved asking my wallet questions!" |
+| Riya | ⭐⭐⭐⭐ | Health Score | "Clean UI, great breakdown" |
+| Tay | ⭐⭐⭐⭐⭐ | Heatmap | "Very visual, easy to understand" |
+| Jb | ⭐⭐⭐⭐ | Personality Card | "Fun and accurate!" |
+| Pia | ⭐⭐⭐⭐⭐ | Report Generation | "Professional output" |
 
 **Average Rating: 4.6 / 5** ⭐
 
@@ -193,7 +192,7 @@ After collecting feedback from 5 testnet users, the most common issue was that t
 **Files changed:**
 - src/utils/claudeClient.js — enhanced prompt logic + mock mode  
 - src/hooks/useWallet.js — improved wallet connection reliability  
-
+**Git commit:**https://github.com/xaden1/stellarmind/commit/6f55d6b6587197bbc815ad01f454b31a9626e14c
 ---
 
 ## 📄 License
