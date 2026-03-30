@@ -15,10 +15,7 @@
 
 ---
 
-## 🎥 Demo Video
-**[Watch Full Demo on Loom / YouTube](https://YOUR-DEMO-VIDEO-LINK)**
 
-> A 3–5 minute walkthrough showing: wallet connect → AI analysis → dashboard → chat → report generation.
 
 ---
 
@@ -135,8 +132,6 @@ All wallets listed below are real Stellar testnet addresses, verifiable on [Stel
 | 4 | [Tester Name] | `GKLM...XYZ4` | [View →](https://stellar.expert/explorer/testnet/account/GKLM...XYZ4) |
 | 5 | [Tester Name] | `GNOP...XYZ5` | [View →](https://stellar.expert/explorer/testnet/account/GNOP...XYZ5) |
 
-> Fill in real wallet addresses after onboarding your 5 testers (see onboarding guide below).
-
 ---
 
 ## 📋 User Feedback & Validation
@@ -174,57 +169,9 @@ The form collects:
 After collecting feedback from 5 real testnet users via the Google Form, the most common request was **[e.g. "the chat sometimes doesn't answer questions about specific dates accurately"]**.
 
 ### Iteration Completed ✅
+**Issue identified:** AI chat sometimes returned generic responses  
 
-**Issue identified:** [Describe the specific issue users flagged most]
-
-**Change made:** [Describe what was fixed or improved — e.g. "Added Offline Mock Mode for judges and users without API keys, and improved Freighter connection logic to use latest API methods"]
-
-**Files changed:**
-- `src/utils/claudeClient.js` — added mock mode for AI chat and reports
-- `src/hooks/useWallet.js` — updated `requestAccess()` compatibility
-
----
-
-## 📦 Deployment (Vercel)
-
-```bash
-# 1. Push to GitHub
-git remote add origin https://github.com/YOUR_USERNAME/stellarmind
-git push -u origin main
-
-# 2. Go to vercel.com → New Project → Import your repo
-
-# 3. Set environment variables in Vercel dashboard:
-#    VITE_ANTHROPIC_API_KEY = your_key
-#    VITE_HORIZON_URL = https://horizon-testnet.stellar.org
-
-# 4. Deploy → get your live URL → update the badge at top of this README
-```
-
----
-
-## 🧑‍💻 User Onboarding Script
-
-Send this to your 5 testers:
-
-```
-Hi! I need your help testing StellarMind for a Stellar hackathon. Takes ~5 mins:
-
-1. Install Freighter extension: https://freighter.app
-2. Create a wallet → Settings → switch to "Testnet"
-3. Fund your testnet wallet:
-   → https://laboratory.stellar.org/#account-creator?network=test
-   → Click "Generate Keypair" → copy your Public Key
-   → Click "Fund with Friendbot" (gives you 10,000 test XLM)
-4. Import the address to Freighter
-5. Visit: [YOUR VERCEL URL]
-6. Click "Connect Wallet" → authorize Freighter
-7. Explore for ~5 minutes, try the AI chat!
-8. Fill in this form: [YOUR GOOGLE FORM URL]
-
-Your wallet address will be listed in the project README (public testnet data only).
-Thank you! 🚀
-```
+**Change made:** Improved prompt engineering and added Offline Mock Mode for consistent demo experience without API dependency
 
 ---
 
