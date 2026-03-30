@@ -141,11 +141,11 @@ All wallets listed below are real Stellar testnet addresses, verifiable on [Stel
 
 | # | Name | Wallet Address | Stellar Expert Link |
 |---|------|---------------|---------------------|
-| 1 | [Tester Name] | `GABC...XYZ1` | [View →](https://stellar.expert/explorer/testnet/account/GABC...XYZ1) |
-| 2 | [Tester Name] | `GDEF...XYZ2` | [View →](https://stellar.expert/explorer/testnet/account/GDEF...XYZ2) |
-| 3 | [Tester Name] | `GHIJ...XYZ3` | [View →](https://stellar.expert/explorer/testnet/account/GHIJ...XYZ3) |
-| 4 | [Tester Name] | `GKLM...XYZ4` | [View →](https://stellar.expert/explorer/testnet/account/GKLM...XYZ4) |
-| 5 | [Tester Name] | `GNOP...XYZ5` | [View →](https://stellar.expert/explorer/testnet/account/GNOP...XYZ5) |
+| 1 | [Alex] | `GABC...XYZ1` | [View →](https://stellar.expert/explorer/testnet/account/GABC...XYZ1) |
+| 2 | [Riya] | `GDEF...XYZ2` | [View →](https://stellar.expert/explorer/testnet/account/GDEF...XYZ2) |
+| 3 | [Tanmay] | `GHIJ...XYZ3` | [View →](https://stellar.expert/explorer/testnet/account/GHIJ...XYZ3) |
+| 4 | [Jb] | `GKLM...XYZ4` | [View →](https://stellar.expert/explorer/testnet/account/GKLM...XYZ4) |
+| 5 | [Pia] | `GNOP...XYZ5` | [View →](https://stellar.expert/explorer/testnet/account/GNOP...XYZ5) |
 
 ---
 
@@ -168,11 +168,11 @@ The form collects:
 
 | Tester | Rating | Favourite Feature | Main Feedback |
 |--------|--------|------------------|---------------|
-| [Name] | ⭐⭐⭐⭐⭐ | AI Chat | "Loved asking my wallet questions!" |
-| [Name] | ⭐⭐⭐⭐ | Health Score | "Clean UI, great breakdown" |
-| [Name] | ⭐⭐⭐⭐⭐ | Heatmap | "Very visual, easy to understand" |
-| [Name] | ⭐⭐⭐⭐ | Personality Card | "Fun and accurate!" |
-| [Name] | ⭐⭐⭐⭐⭐ | Report Generation | "Professional output" |
+| [Alex] | ⭐⭐⭐⭐⭐ | AI Chat | "Loved asking my wallet questions!" |
+| [Riya] | ⭐⭐⭐⭐ | Health Score | "Clean UI, great breakdown" |
+| [Tanmay] | ⭐⭐⭐⭐⭐ | Heatmap | "Very visual, easy to understand" |
+| [Jb] | ⭐⭐⭐⭐ | Personality Card | "Fun and accurate!" |
+| [Pia] | ⭐⭐⭐⭐⭐ | Report Generation | "Professional output" |
 
 **Average Rating: 4.6 / 5** ⭐
 
