@@ -142,10 +142,10 @@ All wallets listed below are real Stellar testnet addresses, verifiable on [Stel
 | # | Name | Wallet Address | Stellar Expert Link |
 |---|------|---------------|---------------------|
 | 1 | [Alex] | `GBOO...WUZT` | [View →](https://stellar.expert/explorer/testnet/account/GBOODSECIOUWR4ABDT5AINWH6EXEAPH7NIHS7ITMZISNESMJVMGLWUZT) |
-| 2 | [Riya] | `GDEF...XYZ2` | [View →](https://stellar.expert/explorer/testnet/account/GDEF...XYZ2) |
-| 3 | [Tanmay] | `GHIJ...XYZ3` | [View →](https://stellar.expert/explorer/testnet/account/GHIJ...XYZ3) |
-| 4 | [Jb] | `GKLM...XYZ4` | [View →](https://stellar.expert/explorer/testnet/account/GKLM...XYZ4) |
-| 5 | [Pia] | `GNOP...XYZ5` | [View →](https://stellar.expert/explorer/testnet/account/GNOP...XYZ5) |
+| 2 | [Riya] | `GAUQ...UF3I` | [View →](https://stellar.expert/explorer/testnet/account/GAUQTIEW5ISIXY2MUSQ6Z7P5VXV4VRIGH5WTNLNEBI5IV3UP4R6WUF3I) |
+| 3 | [Tay] | `GCIA...WIPM` | [View →](https://stellar.expert/explorer/testnet/account/GCIASB3TL5YNZ7ALYMTC6AHWZY2ZSTWAM56POIPEJIBQTPCRT6QFWIPM) |
+| 4 | [Jb] | `GBGU...W5X7` | [View →](https://stellar.expert/explorer/testnet/account/GBGUGP7AOXMF5VAXN6BLEVQJW23MXCRGIK2XPXOD77YTNW3S5DZAW5X7) |
+| 5 | [Pia] | `GBMU...ESDK` | [View →](https://stellar.expert/explorer/testnet/account/GBMUPHZ75PBNSR6PZPX2J44UCO2QN5E46DFAKYAAVHI5NKS6GNF4ESDK) |
 
 ---
 
