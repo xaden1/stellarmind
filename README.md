@@ -141,7 +141,7 @@ All wallets listed below are real Stellar testnet addresses, verifiable on [Stel
 
 | # | Name | Wallet Address | Stellar Expert Link |
 |---|------|---------------|---------------------|
-| 1 | [Alex] | `GABC...XYZ1` | [View →](https://stellar.expert/explorer/testnet/account/GABC...XYZ1) |
+| 1 | [Alex] | `GBOO...WUZT` | [View →](https://stellar.expert/explorer/testnet/account/GBOODSECIOUWR4ABDT5AINWH6EXEAPH7NIHS7ITMZISNESMJVMGLWUZT) |
 | 2 | [Riya] | `GDEF...XYZ2` | [View →](https://stellar.expert/explorer/testnet/account/GDEF...XYZ2) |
 | 3 | [Tanmay] | `GHIJ...XYZ3` | [View →](https://stellar.expert/explorer/testnet/account/GHIJ...XYZ3) |
 | 4 | [Jb] | `GKLM...XYZ4` | [View →](https://stellar.expert/explorer/testnet/account/GKLM...XYZ4) |
