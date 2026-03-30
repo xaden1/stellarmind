@@ -12,7 +12,11 @@
 ## 🚀 Live Demo
 **[https://stellarmind-azure.vercel.app](https://stellarmind-azure.vercel.app/)**
 
+## 📸 Screenshots
 
+![Dashboard](./screenshots/dashboard.png)
+![AI Chat](./screenshots/chat.png)
+![Report](./screenshots/report.png)
 ---
 
 
@@ -20,6 +24,7 @@
 ---
 
 ## 📖 What is StellarMind?
+StellarMind transforms complex Stellar transaction data into clear, actionable financial insights using AI — all without any backend infrastructure.
 
 StellarMind is a **100% frontend dApp** — no backend server, no database. It connects directly to your Stellar testnet wallet via the Freighter browser extension, fetches your complete transaction history from the Stellar Horizon API, and uses Claude AI entirely in the browser to generate:
 
@@ -63,6 +68,16 @@ Browser (React App)
 
 See **[ARCHITECTURE.md](./ARCHITECTURE.md)** for the full data flow, component tree, and design decisions.
 
+---
+## 💡 Why StellarMind?
+
+Most crypto wallets show raw transaction logs — not insights.
+
+StellarMind changes that by:
+- Converting blockchain activity into understandable financial intelligence
+- Making Web3 accessible to non-technical users
+- Bringing AI-powered analytics directly into the browser
+  
 ---
 
 ## 🛠️ Tech Stack
