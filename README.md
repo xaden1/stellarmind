@@ -141,9 +141,9 @@ All wallets listed below are real Stellar testnet addresses, verifiable on [Stel
 
 | # | Name | Wallet Address | Stellar Expert Link |
 |---|------|---------------|---------------------|
-| 1 | Alex | `GBOO...WUZT` | [View →](https://stellar.expert/explorer/testnet/account/GBOODSECIOUWR4ABDT5AINWH6EXEAPH7NIHS7ITMZISNESMJVMGLWUZT) |
+| 1 | Tanmay | `GCVB...RF2R` | [View →](https://stellar.expert/explorer/testnet/account/GCVBGPRU7YSL7NTK4WQ5SRGE4RC5CV7KNYBVJLNPKMMOUQRFPGRZRF2R) |
 | 2 | Riya | `GAUQ...UF3I` | [View →](https://stellar.expert/explorer/testnet/account/GAUQTIEW5ISIXY2MUSQ6Z7P5VXV4VRIGH5WTNLNEBI5IV3UP4R6WUF3I) |
-| 3 | Tay | `GCIA...WIPM` | [View →](https://stellar.expert/explorer/testnet/account/GCIASB3TL5YNZ7ALYMTC6AHWZY2ZSTWAM56POIPEJIBQTPCRT6QFWIPM) |
+| 3 | Alex | `GCIA...WIPM` | [View →](https://stellar.expert/explorer/testnet/account/GCIASB3TL5YNZ7ALYMTC6AHWZY2ZSTWAM56POIPEJIBQTPCRT6QFWIPM) |
 | 4 | Jb | `GBGU...W5X7` | [View →](https://stellar.expert/explorer/testnet/account/GBGUGP7AOXMF5VAXN6BLEVQJW23MXCRGIK2XPXOD77YTNW3S5DZAW5X7) |
 | 5 | Pia | `GBMU...ESDK` | [View →](https://stellar.expert/explorer/testnet/account/GBMUPHZ75PBNSR6PZPX2J44UCO2QN5E46DFAKYAAVHI5NKS6GNF4ESDK) |
 
@@ -168,7 +168,7 @@ The form collects:
 
 | Tester | Rating | Favourite Feature | Main Feedback |
 |--------|--------|------------------|---------------|
-| Alex | ⭐⭐⭐⭐⭐ | AI Chat | "Loved asking my wallet questions!" |
+| Tanmay | ⭐⭐⭐ | AI Chat | "It has a very unique UI and the AI chat was amazing" |
 | Riya | ⭐⭐⭐⭐ | Health Score | "Clean UI, great breakdown" |
 | Tay | ⭐⭐⭐⭐⭐ | Heatmap | "Very visual, easy to understand" |
 | Jb | ⭐⭐⭐⭐ | Personality Card | "Fun and accurate!" |
