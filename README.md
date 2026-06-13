@@ -3,7 +3,6 @@
 > AI-Powered Financial Intelligence for Your Stellar Wallet — 100% in the Browser
 
 [![Stellar](https://img.shields.io/badge/Built_on-Stellar-00D4B4?style=for-the-badge)](https://stellar.org)
-[![Claude AI](https://img.shields.io/badge/AI-Claude-7C5CFC?style=for-the-badge)](https://anthropic.com)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](./LICENSE)
 
 ---
