@@ -93,7 +93,7 @@ export default function HeatmapCalendar({ activityByDate = {} }) {
   };
 
   return (
-    <div className="card p-6 w-full" ref={containerRef}>
+    <div className="glass-panel p-6 w-full" ref={containerRef}>
       
       {/* Title Row */}
       <div className="flex justify-between items-center mb-6">

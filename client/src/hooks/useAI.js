@@ -21,7 +21,7 @@ function generateFallbackAnalysis(walletData) {
     insights: [
       `You have ${txCount} transaction${txCount !== 1 ? 's' : ''} on the testnet.`,
       `Your wallet holds ${assetCount} asset type${assetCount !== 1 ? 's' : ''}.`,
-      'Add your Claude API key for deeper AI-powered insights.',
+      'Add your API key for deeper AI-powered insights.',
     ],
     anomalies: [],
     moodScore: healthScore,
@@ -57,7 +57,7 @@ export const useAI = () => {
       localStorage.setItem('stellarmind_analysis', JSON.stringify(result));
       return result;
     } catch (err) {
-      console.warn('[StellarMind] Claude API failed, using fallback analysis:', err.message);
+      console.warn('[StellarMind] AI API failed, using fallback analysis:', err.message);
       setError(err.message);
       const fallback = generateFallbackAnalysis(walletData);
       setAnalysis(fallback);
@@ -78,7 +78,7 @@ export const useAI = () => {
       setChatHistory(prev => [...prev, aiMsg]);
       return reply;
     } catch (err) {
-      const errMsg = { role: 'assistant', content: "I couldn't process that right now. Please check your Claude API key and try again!" };
+      const errMsg = { role: 'assistant', content: "I couldn't process that right now. Please check your API key and try again!" };
       setChatHistory(prev => [...prev, errMsg]);
       return null;
     } finally {

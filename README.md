@@ -2,6 +2,7 @@
 
 > AI-Powered Financial Intelligence for Your Stellar Wallet — 100% in the Browser
 
+[![Deploy](https://github.com/xaden1/stellarmind/actions/workflows/deploy.yml/badge.svg)](https://github.com/xaden1/stellarmind/actions/workflows/deploy.yml)
 [![Live Demo](https://img.shields.io/badge/Live-Demo-7C5CFC?style=for-the-badge)](YOUR_VERCEL_URL)
 [![Stellar](https://img.shields.io/badge/Built_on-Stellar-00D4B4?style=for-the-badge)](https://stellar.org)
 [![Claude AI](https://img.shields.io/badge/AI-Claude-7C5CFC?style=for-the-badge)](https://anthropic.com)

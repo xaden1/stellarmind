@@ -49,7 +49,7 @@ export default function Report({ walletAddress }) {
   };
 
   return (
-    <div className="min-h-screen bg-bg-base overflow-x-hidden relative" style={{ paddingTop: 80 }}>
+    <div className="min-h-screen overflow-x-hidden relative" style={{ paddingTop: 80 }}>
       
       {/* Top Bar / Controls */}
       <div className="no-print sticky top-[80px] z-50 bg-bg-base/80 backdrop-blur-md border-b border-b1 px-6 py-4">
@@ -99,7 +99,7 @@ export default function Report({ walletAddress }) {
                     <Sparkles size={32} className="text-indigo animate-pulse" />
                  </div>
               </div>
-              <h2 className="font-display font-bold text-2xl text-t1 mb-2">Claude is writing your report...</h2>
+              <h2 className="font-display font-bold text-2xl text-t1 mb-2">StellarMind is writing your report...</h2>
               <p className="font-body text-t2">Analyzing transaction history and calculating trends</p>
            </div>
         )}
@@ -142,12 +142,12 @@ export default function Report({ walletAddress }) {
                     <h2 className="font-display font-bold text-[22px] m-0">Key Metrics</h2>
                  </div>
                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="card-minimal border border-b2 p-6 rounded-2xl flex flex-col items-center text-center">
+                    <div className="glass-panel p-6 flex flex-col items-center text-center">
                        <span className="text-[12px] uppercase font-bold text-t3 tracking-widest mb-3">Health Score</span>
                        <span className="font-display font-bold text-[48px] text-grad leading-none mb-2">{analysis?.healthScore || 0}</span>
                        <span className="badge badge-indigo">Elite Performer</span>
                     </div>
-                    <div className="card-minimal border border-b2 p-6 rounded-2xl flex flex-col items-center text-center">
+                    <div className="glass-panel p-6 flex flex-col items-center text-center">
                        <span className="text-[12px] uppercase font-bold text-t3 tracking-widest mb-3">Current Grade</span>
                        <span className="font-display font-bold text-[48px] text-t1 leading-none mb-2">{report.grade || 'A'}</span>
                        <span className={`badge ${report.grade?.startsWith('A') ? 'badge-green' : 'badge-amber'}`}>Calculated vs. Network</span>
@@ -163,7 +163,7 @@ export default function Report({ walletAddress }) {
                  </div>
                  <div className="space-y-4">
                     {report.highlights?.map((hl, i) => (
-                      <div key={i} className="flex gap-4 p-5 rounded-[12px] bg-bg-elevated/50 border border-b2 group hover:border-indigo/50 transition-colors">
+                       <div key={i} className="flex gap-4 p-5 rounded-[12px] glass-panel group hover:border-indigo/50 transition-colors">
                          <div className="w-8 h-8 rounded-full bg-indigo-dim flex items-center justify-center text-indigo shrink-0 mt-0.5">
                             <span className="font-bold text-[13px]">{i + 1}</span>
                          </div>
@@ -179,7 +179,7 @@ export default function Report({ walletAddress }) {
                     <ShieldCheck className="text-cyan" size={24} />
                     <h2 className="font-display font-bold text-[22px] m-0">Strategic Recommendations</h2>
                  </div>
-                 <div className="bg-grad-cyan-dim rounded-[24px] p-8 border border-cyan/20">
+                  <div className="glass-callout p-8">
                     <ul className="space-y-6 m-0 p-0 list-none">
                        {report.recommendations?.map((rec, i) => (
                          <li key={i} className="flex gap-4 items-start">
@@ -195,7 +195,7 @@ export default function Report({ walletAddress }) {
 
               {/* Summary Conclusion */}
               <motion.div variants={itemVars} className="pt-8 border-t border-b1">
-                 <div className="p-8 rounded-[24px] border border-b1 bg-bg-surface flex flex-col sm:flex-row items-center gap-8 shadow-inner">
+                  <div className="glass-panel p-8 flex flex-col sm:flex-row items-center gap-8">
                     <div className="w-24 h-24 items-center justify-center hidden sm:flex shrink-0">
                        <FileText size={48} className="text-t3 opacity-20" />
                     </div>

@@ -20,7 +20,7 @@ export default function AnomalyAlert({ anomalies = [] }) {
 
   if (!anomalies || anomalies.length === 0) {
     return (
-      <div className="card w-full h-full min-h-[260px] flex flex-col items-center justify-center text-center p-6">
+      <div className="glass-panel w-full h-full min-h-[260px] flex flex-col items-center justify-center text-center p-6">
         <motion.div
            initial={{ opacity: 0, scale: 0.8 }}
            animate={{ opacity: 1, scale: 1 }}
@@ -53,7 +53,7 @@ export default function AnomalyAlert({ anomalies = [] }) {
   };
 
   return (
-    <div className="card w-full h-[420px] flex flex-col p-6 overflow-hidden">
+    <div className="glass-panel w-full h-[420px] flex flex-col p-6 overflow-hidden">
       
       {/* Header */}
       <div className="flex justify-between items-center mb-6 shrink-0">
@@ -80,7 +80,7 @@ export default function AnomalyAlert({ anomalies = [] }) {
             <motion.div 
               key={idx}
               variants={itemVars}
-              className="w-full bg-[var(--bg-elevated)] border-l-[3px] rounded-[0_8px_8px_0] flex flex-col p-4 shadow-md transition-shadow hover:shadow-[var(--shadow-card)]"
+              className="w-full glass-row border-l-[3px] rounded-[0_8px_8px_0] flex flex-col p-4 transition-shadow hover:shadow-[var(--shadow-card)]"
               style={{ borderLeftColor: color }}
             >
               

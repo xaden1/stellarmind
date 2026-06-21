@@ -75,7 +75,7 @@ export default function TransactionTimeline({ transactions = [], operations = []
   };
 
   return (
-    <div className="card p-6 flex flex-col h-full min-h-[500px]">
+    <div className="glass-panel p-6 flex flex-col h-full min-h-[500px]">
 
       {/* Header */}
       <div className="flex justify-between items-center mb-4 shrink-0">

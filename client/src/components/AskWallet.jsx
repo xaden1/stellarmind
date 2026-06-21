@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Loader2 } from 'lucide-react';
+import BrandLogo from './BrandLogo';
 
 const SUGGESTIONS = [
   "Was March my best month?",
@@ -47,7 +48,7 @@ export default function AskWallet({ chatHistory = [], onSend, onClear, chatLoadi
   };
 
   return (
-    <div className="card flex flex-col h-full min-h-[500px]">
+    <div className="glass-panel flex flex-col h-full min-h-[500px]">
       {/* Header */}
       <div className="flex justify-between items-center px-6 py-4 border-b border-[var(--b1)] shrink-0">
         <h3 className="font-display font-semibold text-[16px] text-[var(--t1)] m-0">
@@ -100,9 +101,7 @@ export default function AskWallet({ chatHistory = [], onSend, onClear, chatLoadi
                 className={`flex gap-[10px] w-full ${isUser ? 'justify-end' : 'justify-start items-start'}`}
               >
                 {!isUser && (
-                  <div className="w-[28px] h-[28px] rounded-full shrink-0 flex items-center justify-center text-white font-display text-[10px] bg-[linear-gradient(135deg,var(--indigo),var(--cyan))]">
-                    SM
-                  </div>
+                  <BrandLogo size="sm" showName={false} />
                 )}
                 
                 <div className="flex flex-col gap-1" style={{ alignItems: isUser ? 'flex-end' : 'flex-start' }}>
@@ -132,9 +131,7 @@ export default function AskWallet({ chatHistory = [], onSend, onClear, chatLoadi
             animate={{ opacity: 1, x: 0 }}
             className="flex gap-[10px] items-start w-full justify-start"
           >
-            <div className="w-[28px] h-[28px] rounded-full shrink-0 flex items-center justify-center text-white font-display text-[10px] bg-[linear-gradient(135deg,var(--indigo),var(--cyan))]">
-              SM
-            </div>
+            <BrandLogo size="sm" showName={false} />
             <div className="px-[16px] py-[12px] bg-[var(--bg-elevated)] border border-[var(--b2)] rounded-[4px_16px_16px_16px] flex gap-1 h-[46px] items-center">
                <span className="chat-dot" />
                <span className="chat-dot" />
@@ -147,7 +144,8 @@ export default function AskWallet({ chatHistory = [], onSend, onClear, chatLoadi
       </div>
 
       {/* Input Area */}
-      <div className="flex gap-[8px] px-6 py-4 border-t border-[var(--b1)] shrink-0 items-center bg-[var(--bg-surface)]">
+      <div className="flex gap-[8px] px-6 py-4 border-t border-[var(--b1)] shrink-0 items-center"
+        style={{ background: 'var(--glass-bg)', borderTop: '1px solid var(--b1)', backdropFilter: 'blur(14px)' }}>
          <input 
            type="text"
            value={input}
@@ -155,7 +153,7 @@ export default function AskWallet({ chatHistory = [], onSend, onClear, chatLoadi
            onKeyDown={handleKeyDown}
            placeholder="Ask anything about your wallet..."
            disabled={chatLoading}
-           className="input flex-1"
+           className="input-glass flex-1"
          />
          <motion.button
            whileTap={(!chatLoading && input.trim()) ? { scale: 0.95 } : {}}

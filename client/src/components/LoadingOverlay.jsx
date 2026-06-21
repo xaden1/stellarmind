@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, Loader2 } from 'lucide-react';
+import BrandLogo from './BrandLogo';
 
 const CYCLE_MESSAGES = [
   { text: 'Connecting to Stellar Horizon...', color: 'var(--indigo)' },
@@ -45,21 +46,7 @@ export default function LoadingOverlay({ currentStep = 0 }) {
         
         {/* Logo Mark + Wordmark */}
         <div className="flex flex-col items-center gap-4 animate-float">
-          <div className="relative w-[72px] h-[72px] rounded-full flex items-center justify-center shadow-[var(--shadow-glow-indigo)]">
-             <div className="absolute inset-0 rounded-full border-[2px] border-transparent" 
-                  style={{
-                    background: 'conic-gradient(var(--indigo), var(--cyan), var(--indigo))',
-                    WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                    WebkitMaskComposite: 'xor',
-                    maskComposite: 'exclude',
-                    animation: 'orbit-cw 3s linear infinite'
-                  }} 
-             />
-             <div className="w-[68px] h-[68px] rounded-full bg-[var(--bg-surface)] flex items-center justify-center">
-                <span className="font-display font-bold text-[24px] text-white">SM</span>
-             </div>
-          </div>
-          <h1 className="font-display font-bold text-[28px] text-grad m-0">StellarMind</h1>
+          <BrandLogo size="lg" showName />
         </div>
 
         {/* Animated Loading Message */}
@@ -124,10 +111,7 @@ export default function LoadingOverlay({ currentStep = 0 }) {
           />
         </div>
 
-        {/* Footer text */}
-        <div className="mt-8 text-[11px] text-[var(--t3)] tracking-wide uppercase">
-          Powered by Stellar + Claude AI
-        </div>
+
 
       </div>
     </div>

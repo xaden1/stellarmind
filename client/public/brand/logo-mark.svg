@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Outer glow ring -->
+  <circle cx="24" cy="24" r="22" stroke="url(#ring-grad)" stroke-width="0.6" opacity="0.5"/>
+  
+  <!-- Star shape -->
+  <path d="M24 4L26.8 14.6H38L29 21.2L31.8 31.8L24 25.2L16.2 31.8L19 21.2L10 14.6H21.2L24 4Z"
+    fill="url(#star-fill)" opacity="0.92"/>
+  
+  <!-- Center neural node -->
+  <circle cx="24" cy="22" r="3.5" fill="white" opacity="0.9"/>
+  
+  <!-- Neural connection lines -->
+  <line x1="24" y1="18.5" x2="24" y2="10" stroke="white" stroke-width="1" opacity="0.35" stroke-linecap="round"/>
+  <line x1="27" y1="24" x2="35" y2="28" stroke="white" stroke-width="1" opacity="0.35" stroke-linecap="round"/>
+  <line x1="21" y1="24" x2="13" y2="28" stroke="white" stroke-width="1" opacity="0.35" stroke-linecap="round"/>
+  
+  <!-- Small orbital nodes -->
+  <circle cx="24" cy="9.5" r="1.5" fill="white" opacity="0.6"/>
+  <circle cx="35.5" cy="28.5" r="1.5" fill="white" opacity="0.6"/>
+  <circle cx="12.5" cy="28.5" r="1.5" fill="white" opacity="0.6"/>
+  
+  <defs>
+    <linearGradient id="star-fill" x1="10" y1="4" x2="38" y2="32" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#C4B5FD"/>
+      <stop offset="50%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#67E8F9"/>
+    </linearGradient>
+    <linearGradient id="ring-grad" x1="2" y1="2" x2="46" y2="46" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.8"/>
+    </linearGradient>
+  </defs>
+</svg>

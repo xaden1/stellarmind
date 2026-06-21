@@ -37,7 +37,7 @@ export default function HealthScoreRing({ score = 0, breakdown = {} }) {
   ];
 
   return (
-    <div className="card flex flex-col items-center justify-center p-6 h-full">
+    <div className="glass-panel glass-glow-health flex flex-col items-center justify-center p-6 h-full">
       
       {/* Container for SVG and inner content */}
       <div className="relative w-[200px] h-[200px] mb-6 flex items-center justify-center">
@@ -102,24 +102,24 @@ export default function HealthScoreRing({ score = 0, breakdown = {} }) {
       </div>
 
       {/* 2x2 Grid details */}
-      <div className="grid grid-cols-2 gap-4 w-[240px]">
-        {subScores.map(({ label, value, color }) => (
-          <div key={label} className="flex flex-col border-l-[4px] pl-3 py-1 bg-[rgba(255,255,255,0.02)] rounded-r-md" style={{ borderLeftColor: color }}>
-            <span className="text-[11px] uppercase text-[var(--t3)] tracking-wider font-semibold">{label}</span>
-            <span className="font-mono text-[18px] font-medium mt-1 mb-2" style={{ color }}>{value}</span>
-            <div className="w-[60px] h-[3px] bg-[var(--bg-overlay)] rounded-full overflow-hidden">
-               <motion.div 
-                 className="h-full rounded-full" 
-                 style={{ background: color }}
-                 initial={{ width: 0 }}
-                 whileInView={{ width: `${value}%` }}
-                 viewport={{ once: true }}
-                 transition={{ duration: 1, ease: 'easeOut' }}
-               />
-            </div>
+          <div className="grid grid-cols-2 gap-4 w-[240px]">
+            {subScores.map(({ label, value, color }) => (
+              <div key={label} className="flex flex-col pl-3 py-2 rounded-r-md" style={{ borderLeft: `4px solid ${color}` }}>
+                <span className="text-[11px] uppercase text-[var(--t3)] tracking-wider font-semibold">{label}</span>
+                <span className="font-mono text-[18px] font-medium mt-1 mb-2" style={{ color }}>{value}</span>
+                <div className="w-[90px] h-[8px] bg-[rgba(255,255,255,0.04)] rounded-full overflow-hidden">
+                   <motion.div 
+                     className="h-full rounded-full"
+                     style={{ background: `linear-gradient(90deg, ${color}, var(--cyan))`, boxShadow: `0 6px 18px ${color}33` }}
+                     initial={{ width: 0 }}
+                     whileInView={{ width: `${value}%` }}
+                     viewport={{ once: true }}
+                     transition={{ duration: 1, ease: 'easeOut' }}
+                   />
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
     </div>
   );
 }

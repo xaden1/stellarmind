@@ -54,7 +54,7 @@ export default function NetworkComparison({ networkComparison = {} }) {
   };
 
   return (
-    <div className="card p-6 flex flex-col h-full min-h-[400px]">
+    <div className="glass-panel p-6 flex flex-col h-full min-h-[400px]">
       
       {/* Header */}
       <div className="mb-6 shrink-0">

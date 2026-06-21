@@ -8,9 +8,8 @@ export default function WalletConnect({ onConnect, isConnecting, error }) {
         disabled={isConnecting}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.97 }}
-        className="relative px-8 py-4 rounded-2xl text-white font-semibold text-lg disabled:opacity-60 transition-all"
+        className="btn btn-primary !px-8 !py-4 !text-lg disabled:opacity-60 transition-all"
         style={{
-          background: 'linear-gradient(135deg, #7C5CFC, #5B3FD4)',
           boxShadow: '0 0 30px rgba(124, 92, 252, 0.4)'
         }}
       >

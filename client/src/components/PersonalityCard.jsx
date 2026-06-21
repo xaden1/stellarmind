@@ -50,7 +50,7 @@ export default function PersonalityCard({ personality = {}, monthlyTrend = 'stab
            `}</style>
            
            {/* FRONT FACE */}
-           <div className="absolute inset-0 card personality-pattern card-glow-indigo p-6 flex flex-col items-center justify-between"
+           <div className="absolute inset-0 glass-panel personality-pattern card-glow-indigo p-6 flex flex-col items-center justify-between"
                 style={{ backfaceVisibility: 'hidden' }}>
               
               <div className="w-full flex justify-end">
@@ -80,7 +80,7 @@ export default function PersonalityCard({ personality = {}, monthlyTrend = 'stab
            </div>
 
            {/* BACK FACE */}
-           <div className="absolute inset-0 card p-6 flex flex-col items-center justify-center"
+           <div className="absolute inset-0 glass-panel p-6 flex flex-col items-center justify-center"
                 style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
                 
                 <h3 className="font-display text-[16px] text-grad font-bold mb-6">Financial DNA Breakdown</h3>

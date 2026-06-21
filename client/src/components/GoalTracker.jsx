@@ -90,7 +90,7 @@ export default function GoalTracker({ walletAddress }) {
   };
 
   return (
-    <div className="card p-6 flex flex-col h-full">
+    <div className="glass-panel p-6 flex flex-col h-full">
       <div className="flex items-center justify-between mb-6">
         <h2 className="font-display font-bold text-[16px] text-t1 m-0">Monthly Goals 🎯</h2>
         <button
@@ -117,7 +117,7 @@ export default function GoalTracker({ walletAddress }) {
                   value={form.text}
                   onChange={e => setForm(f => ({ ...f, text: e.target.value }))}
                   placeholder="e.g. Save for a journey"
-                  className="input"
+                  className="input-glass"
                 />
               </div>
               <div>
@@ -127,7 +127,7 @@ export default function GoalTracker({ walletAddress }) {
                   value={form.target}
                   onChange={e => setForm(f => ({ ...f, target: e.target.value }))}
                   placeholder="0.00"
-                  className="input"
+                  className="input-glass"
                 />
               </div>
               <div className="flex gap-2">
@@ -180,7 +180,7 @@ export default function GoalTracker({ walletAddress }) {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.3, delay: index * 0.05 }}
-                    className={`card p-4 transition-all ${isCompleted ? 'bg-[rgba(16,185,129,0.05)] border-green/30' : ''}`}
+                    className={`glass-panel p-4 transition-all ${isCompleted ? 'bg-[rgba(16,185,129,0.05)] border-green/30' : ''}`}
                   >
                     {isCompleted && (
                       <div className="badge badge-green absolute top-3 right-10 !text-[9px]">

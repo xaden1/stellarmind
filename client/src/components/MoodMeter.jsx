@@ -19,7 +19,7 @@ export default function MoodMeter({ moodScore = 50, moodLabel = 'Stable' }) {
   const clampedScore = Math.max(0, Math.min(100, moodScore));
 
   return (
-    <div className="card w-full p-6 flex flex-col h-full justify-between">
+    <div className="glass-panel glass-glow-mood w-full p-6 flex flex-col h-full justify-between">
       
       {/* Header */}
       <div className="flex flex-col items-center">
@@ -43,7 +43,7 @@ export default function MoodMeter({ moodScore = 50, moodLabel = 'Stable' }) {
       {/* Track Container */}
       <div className="w-full flex flex-col mt-4">
         <div className="relative w-full px-[9px] mb-8">
-           <div className="w-full h-[10px] rounded-full" style={{ background: 'linear-gradient(90deg, var(--t3), var(--amber), var(--green), var(--cyan))' }} />
+           <div className="w-full h-[10px] rounded-full" style={{ background: 'linear-gradient(90deg, var(--t3) 0%, var(--amber) 33%, var(--green) 66%, var(--cyan) 100%)' }} />
            <motion.div 
              className="mood-indicator"
              initial={{ left: '0%' }}

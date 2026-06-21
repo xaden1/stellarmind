@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Star shape -->
+  <path d="M16 2L18.2 9.8H26.4L20 14L22.2 21.8L16 17.6L9.8 21.8L12 14L5.6 9.8H13.8L16 2Z"
+    fill="url(#fav-star)" opacity="0.95"/>
+  <!-- Center node -->
+  <circle cx="16" cy="14" r="2.5" fill="white" opacity="0.9"/>
+  <!-- Connection lines -->
+  <line x1="16" y1="11.5" x2="16" y2="7" stroke="white" stroke-width="0.8" opacity="0.4" stroke-linecap="round"/>
+  <line x1="18" y1="15.5" x2="22" y2="18" stroke="white" stroke-width="0.8" opacity="0.4" stroke-linecap="round"/>
+  <line x1="14" y1="15.5" x2="10" y2="18" stroke="white" stroke-width="0.8" opacity="0.4" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="fav-star" x1="5" y1="2" x2="27" y2="22" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#C4B5FD"/>
+      <stop offset="100%" stop-color="#67E8F9"/>
+    </linearGradient>
+  </defs>
+</svg>

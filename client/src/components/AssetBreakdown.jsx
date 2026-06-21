@@ -48,7 +48,7 @@ export default function AssetBreakdown({ assetSummary = [] }) {
   const isOnlyXlm = data.length === 1 && data[0].name.toUpperCase() === 'XLM';
 
   return (
-    <div className="card p-6 flex flex-col h-full min-h-[400px]">
+    <div className="glass-panel p-6 flex flex-col h-full min-h-[400px]">
       
       {/* Header */}
       <div className="mb-6">
